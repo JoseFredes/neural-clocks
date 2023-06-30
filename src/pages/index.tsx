@@ -2,13 +2,12 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import { FaSlidersH } from "react-icons/fa";
 import { TimerOptionsModal } from "~/components/modals/TimerOptionsModal";
-import { Modal } from "~/components/modals/modal";
 import { Timers } from "~/components/timer/Timers";
 
 export default function Home() {
   const { data: sessionData } = useSession();
-  // add option button to change the total minutes
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,6 +26,7 @@ export default function Home() {
           <h1 className="mb-10 text-5xl font-extrabold tracking-tight text-blue-800 sm:text-6xl md:text-7xl">
             Neural Clocks
           </h1>
+
           {!sessionData && (
             <p className="pb-10 text-center">
               Inicia sesión para guardar tus tiempos y poder acceder a ellos
@@ -34,9 +34,14 @@ export default function Home() {
             </p>
           )}
           <Auth />
+          <button
+            className="absolute left-5 top-5 flex flex-col items-center justify-center gap-4"
+            onClick={() => setIsOpen(true)}
+          >
+            <FaSlidersH className="px-2 text-5xl text-black hover:text-opacity-50" />
+          </button>
 
           <div className="flex flex-col items-center">
-            <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
             <TimerOptionsModal
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}

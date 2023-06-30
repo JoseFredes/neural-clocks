@@ -2,7 +2,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
-import { FaPiNutBold, FaSlidersH } from "react-icons/fa";
+import { FaSlidersH } from "react-icons/fa";
 import { TimerOptionsModal } from "~/components/modals/TimerOptionsModal";
 import { Timers } from "~/components/timer/Timers";
 

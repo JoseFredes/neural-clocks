@@ -11,12 +11,11 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  if (!isOpen) return null;
-
   const [pomodoroMinutes, setPomodoroMinutes] = useState(25);
   const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
   const [longBreakMinutes, setLongBreakMinutes] = useState(15);
 
+  if (!isOpen) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
       <div className="w-96 rounded-lg bg-white">

@@ -4,8 +4,6 @@ import Link from "next/link";
 import { Timer } from "~/components/timers/Timer";
 
 export default function Home() {
-  const { data: sessionData } = useSession();
-
   return (
     <>
       <Head>
@@ -18,6 +16,7 @@ export default function Home() {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+
           <h1 className="mb-10 text-5xl font-extrabold tracking-tight text-blue-800 sm:text-[5rem]">
             Neural Clocks
           </h1>
@@ -30,6 +29,7 @@ export default function Home() {
     </>
   );
 }
+
 
 const Auth = () => {
   const { data: sessionData } = useSession();

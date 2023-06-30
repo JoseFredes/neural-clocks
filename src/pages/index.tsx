@@ -4,6 +4,9 @@ import Link from "next/link";
 import { Timer } from "~/components/timers/Timer";
 
 export default function Home() {
+  const { data: sessionData } = useSession();
+  // add option button to change the total minutes
+
   return (
     <>
       <Head>
@@ -16,12 +19,17 @@ export default function Home() {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-
           <h1 className="mb-10 text-5xl font-extrabold tracking-tight text-blue-800 sm:text-[5rem]">
             Neural Clocks
           </h1>
+          {!sessionData && (
+            <p>
+              Inicia sesión para guardar tus tiempos y poder acceder a ellos
+              desde cualquier dispositivo.
+            </p>
+          )}
           <div className="flex flex-col items-center gap-2">
-            {sessionData && <Timer />}
+            <Timer />
           </div>
           <Auth />
         </div>
@@ -30,8 +38,7 @@ export default function Home() {
   );
 }
 
-
-const Auth = () => {
+const Auth: React.FC = () => {
   const { data: sessionData } = useSession();
 
   return (
@@ -40,7 +47,7 @@ const Auth = () => {
         className="fixed right-5 top-5 rounded-full bg-blue-500 px-10 py-3 font-semibold text-white shadow-md transition duration-200 ease-in-out hover:bg-blue-600"
         onClick={sessionData ? () => void signOut() : () => void signIn()}
       >
-        {sessionData ? "Sign out" : "Sign in"}
+        {sessionData ? "Salir" : "Iniciar sesión"}
       </button>
       <p className="fixed right-5 top-20 text-lg text-gray-600">
         {sessionData && <span>Hola {sessionData.user?.name} !</span>}

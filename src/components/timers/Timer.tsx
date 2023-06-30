@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TimerActionsButtons } from "./TimerActionsButtons";
 
 interface props {
-  totalMinutes: number;
+  totalMinutes?: number;
 }
 
 export const Timer: React.FC<props> = ({ totalMinutes = 25 }: props) => {

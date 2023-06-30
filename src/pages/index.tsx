@@ -1,11 +1,16 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
+import { TimerOptionsModal } from "~/components/modals/TimerOptionsModal";
+import { Modal } from "~/components/modals/modal";
 import { Timers } from "~/components/timer/Timers";
 
 export default function Home() {
   const { data: sessionData } = useSession();
   // add option button to change the total minutes
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -29,7 +34,14 @@ export default function Home() {
             </p>
           )}
           <Auth />
+
           <div className="flex flex-col items-center">
+            <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
+            <TimerOptionsModal
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+            ></TimerOptionsModal>
+
             <Timers />
           </div>
         </div>

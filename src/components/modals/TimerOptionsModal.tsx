@@ -16,7 +16,7 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
   const [pomodoroMinutes, setPomodoroMinutes] = useState(25);
   const [longBreakMinutes, setLongBreakMinutes] = useState(15);
   const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
-  const { mutate, error } = api.stats.save.useMutation();
+  const { mutate, error } = api.stats.saveStats.useMutation();
 
   if (!isOpen) return null;
 

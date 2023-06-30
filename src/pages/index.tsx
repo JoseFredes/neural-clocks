@@ -1,7 +1,10 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import { Timer } from "~/components/timers/Timer";
+import { LongBreakTimer } from "~/components/longBreak/LongBreakTimer";
+import { ShortBreakTimer } from "~/components/shortBreak/ShortBreakTimer";
+import { Timer } from "~/components/timer/Timer";
+import { Timers } from "~/components/timer/Timers";
 
 export default function Home() {
   const { data: sessionData } = useSession();
@@ -18,20 +21,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+        <div className="container flex flex-col items-center justify-center px-4 py-16 ">
+          <Auth />
           <h1 className="mb-10 text-5xl font-extrabold tracking-tight text-blue-800 sm:text-[5rem]">
             Neural Clocks
           </h1>
           {!sessionData && (
-            <p>
+            <p className="pb-10">
               Inicia sesión para guardar tus tiempos y poder acceder a ellos
               desde cualquier dispositivo.
             </p>
           )}
-          <div className="flex flex-col items-center gap-2">
-            <Timer />
+          <div className="flex flex-col items-center">
+            <Timers />
           </div>
-          <Auth />
         </div>
       </main>
     </>

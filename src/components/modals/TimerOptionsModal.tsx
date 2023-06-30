@@ -1,6 +1,7 @@
+import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
-
+import { api } from "~/utils/api";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -11,11 +12,28 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { data: sessionData } = useSession();
   const [pomodoroMinutes, setPomodoroMinutes] = useState(25);
-  const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
   const [longBreakMinutes, setLongBreakMinutes] = useState(15);
+  const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
+  const { mutate, error } = api.stats.save.useMutation();
 
   if (!isOpen) return null;
+
+  const handleSaveStats = () => {
+    const userId = sessionData?.user.id;
+    if (userId)
+      mutate({
+        date: new Date(),
+        pomodoroTime: pomodoroMinutes,
+        shortBreakTime: shortBreakMinutes,
+        longBreakTime: longBreakMinutes,
+        userId: userId,
+      });
+    if (!error) onClose();
+    // add alert success message
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
       <div className="w-96 rounded-lg bg-white">
@@ -72,10 +90,16 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
           </div>
           <button
             className="rounded bg-green-700 px-4 py-2 text-white hover:bg-green-800"
-            onClick={onClose}
+            onClick={handleSaveStats}
           >
             Guardar
           </button>
+          {error && (
+            <p className="text-red-500">
+              Ocurrió un problema al guardar los datos intentalo de nuevo o
+              contacta con el administrador
+            </p>
+          )}
         </div>
       </div>
     </div>

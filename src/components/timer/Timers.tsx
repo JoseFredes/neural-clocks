@@ -30,28 +30,28 @@ export const Timers: React.FC<TimerProps> = ({
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div>
+      <div className="mb-4 flex flex-wrap justify-center">
         <button
-          className="mx-2 rounded-full bg-blue-600 px-10 py-3 font-semibold text-white shadow-md  hover:bg-blue-700"
+          className="m-2 rounded-full bg-blue-600 px-10 py-3 font-semibold text-white shadow-md hover:bg-blue-700"
           onClick={() => handleTimerClick("pomodoro")}
         >
           <text>Pomodoro</text>
         </button>
         <button
-          className="mx-2 rounded-full bg-blue-600 px-10 py-3 font-semibold text-white shadow-md  hover:bg-blue-700"
+          className="m-2 rounded-full bg-blue-600 px-10 py-3 font-semibold text-white shadow-md hover:bg-blue-700"
           onClick={() => handleTimerClick("shortBreak")}
         >
           <text>Short Break</text>
         </button>
         <button
-          className="mx-2 rounded-full bg-blue-600 px-10 py-3 font-semibold text-white shadow-md  hover:bg-blue-700"
+          className="m-2 rounded-full bg-blue-600 px-10 py-3 font-semibold text-white shadow-md hover:bg-blue-700"
           onClick={() => handleTimerClick("longBreak")}
         >
-          <text>Long break</text>
+          <text>Long Break</text>
         </button>
       </div>
 
-      <div>
+      <div className="flex flex-col items-center">
         {timers.pomodoro !== undefined && timers.pomodoro > 0 && (
           <Timer></Timer>
         )}

@@ -9,5 +9,14 @@ interface props {
 export const ShortBreakTimer: React.FC<props> = ({
   totalMinutes = 5,
 }: props) => {
-  return <Timer totalMinutes={totalMinutes} />;
+  const modalTitle = "Se acabó el descanso corto!";
+  const Modaldescription =
+    "Es hora de volver a trabajar otro pomodoro más, ánimo!";
+  return (
+    <Timer
+      totalMinutes={totalMinutes}
+      Modaldescription={modalTitle}
+      modalTitle={Modaldescription}
+    />
+  );
 };

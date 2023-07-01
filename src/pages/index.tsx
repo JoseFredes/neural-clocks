@@ -3,9 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { FaChartBar, FaSlidersH } from "react-icons/fa";
-import { TimerOptionsModal } from "~/components/modals/TimerOptionsModal";
 import { StatsModal } from "~/components/stats/StatsModal";
+import { TimerOptionsModal } from "~/components/timer/TimerOptionsModal";
+
 import { Timers } from "~/components/timer/Timers";
+import { TimerContext } from "~/context/timerContext";
 import { api } from "~/utils/api";
 
 interface stat {
@@ -21,6 +23,11 @@ export default function Home() {
   const { data: sessionData } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenStats, setIsOpenStats] = useState(false);
+  const [timers, setTimers] = useState({
+    pomodoro: 25,
+    shortBreak: 5,
+    longBreak: 15,
+  });
 
   const {
     data: stats,
@@ -76,14 +83,15 @@ export default function Home() {
             stats={statsFormatted ?? []}
           />
 
-          <div className="flex flex-col items-center">
-            <TimerOptionsModal
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
-            ></TimerOptionsModal>
-
-            <Timers />
-          </div>
+          <TimerContext.Provider value={{ timers, setTimers }}>
+            <div className="flex flex-col items-center">
+              <TimerOptionsModal
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+              ></TimerOptionsModal>
+              <Timers />
+            </div>
+          </TimerContext.Provider>
         </div>
       </main>
     </>

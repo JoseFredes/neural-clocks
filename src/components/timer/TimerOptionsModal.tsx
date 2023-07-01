@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import { useTimers } from "~/hooks/useTimers";
 import { api } from "~/utils/api";
 interface ModalProps {
   isOpen: boolean;
@@ -17,19 +18,34 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
   const [longBreakMinutes, setLongBreakMinutes] = useState(15);
   const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
   const { mutate, error } = api.stats.saveStats.useMutation();
+  const { timers, setTimers } = useTimers();
+
+  const actualizatedTimers = {
+    pomodoro: pomodoroMinutes,
+    shortBreak: shortBreakMinutes,
+    longBreak: longBreakMinutes,
+  };
+
+  const handleIncreaseTimers = () => {
+    setTimers({
+      ...actualizatedTimers,
+    });
+  };
 
   if (!isOpen) return null;
 
   const handleSaveStats = () => {
     const userId = sessionData?.user.id;
-    if (userId)
-      mutate({
-        date: new Date(),
-        pomodoroTime: pomodoroMinutes,
-        shortBreakTime: shortBreakMinutes,
-        longBreakTime: longBreakMinutes,
-        userId: userId,
-      });
+    if (!userId) return;
+    mutate({
+      date: new Date(),
+      pomodoroTime: pomodoroMinutes,
+      shortBreakTime: shortBreakMinutes,
+      longBreakTime: longBreakMinutes,
+      userId: userId,
+    });
+    handleIncreaseTimers();
+
     if (!error) onClose();
     // add alert success message
   };

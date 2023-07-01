@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { TimerActionsButtons } from "./TimerActionsButtons";
 
-interface props {
+interface Props {
   totalMinutes?: number;
 }
 
-export const Timer: React.FC<props> = ({ totalMinutes = 25 }: props) => {
+export const Timer: React.FC<Props> = ({ totalMinutes = 25 }: Props) => {
   const [seconds, setSeconds] = useState(totalMinutes * 60);
   const [isActive, setIsActive] = useState(false);
 
@@ -23,13 +23,18 @@ export const Timer: React.FC<props> = ({ totalMinutes = 25 }: props) => {
   };
 
   useEffect(() => {
+    setSeconds(totalMinutes * 60);
+    setIsActive(false);
+  }, [totalMinutes]);
+
+  useEffect(() => {
     let interval: ReturnType<typeof setInterval> | null = null;
 
     if (seconds === 0) setIsActive(false);
 
     if (isActive && seconds > 0) {
       interval = setInterval(() => {
-        setSeconds((seconds) => seconds - 1);
+        setSeconds((prevSeconds) => prevSeconds - 1);
       }, 1000);
     }
 
@@ -47,6 +52,12 @@ export const Timer: React.FC<props> = ({ totalMinutes = 25 }: props) => {
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset =
     circumference - (minutes / totalMinutes) * circumference;
+
+  const formattedTime = useMemo(() => {
+    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+      .toString()
+      .padStart(2, "0")}`;
+  }, [minutes, remainingSeconds]);
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -70,17 +81,15 @@ export const Timer: React.FC<props> = ({ totalMinutes = 25 }: props) => {
           dy=".3em"
           fontSize="5em"
         >
-          {`${minutes.toString().padStart(2, "0")}:${remainingSeconds
-            .toString()
-            .padStart(2, "0")}`}
+          {formattedTime}
         </text>
       </svg>
 
       <TimerActionsButtons
         isActive={isActive}
-        handleResetTimer={() => handleResetTimer()}
-        handlePauseTimer={() => handlePauseTimer()}
-        handleStartTimer={() => handleStartTimer()}
+        handleResetTimer={handleResetTimer}
+        handlePauseTimer={handlePauseTimer}
+        handleStartTimer={handleStartTimer}
       />
     </div>
   );

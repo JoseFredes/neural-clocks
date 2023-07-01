@@ -32,7 +32,7 @@ interface Stats extends Prisma.StatsUncheckedCreateInput {
 }
 
 export const statsRouter = createTRPCRouter({
-  saveStats: publicProcedure
+  saveStats: protectedProcedure
     .input(StatsSchema)
     .mutation<Stats>(async ({ input, ctx }) => {
       if (!input) throw new Error("Input is required");
@@ -50,7 +50,7 @@ export const statsRouter = createTRPCRouter({
       return newStat;
     }),
 
-  getStatsByUser: publicProcedure
+  getStatsByUser: protectedProcedure
     .input(UserIdSchema)
     .query<Stats[]>(async ({ input, ctx }) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call

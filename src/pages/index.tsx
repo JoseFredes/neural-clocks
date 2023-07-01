@@ -2,15 +2,42 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
-import { FaSlidersH } from "react-icons/fa";
+import { FaChartBar, FaSlidersH } from "react-icons/fa";
 import { TimerOptionsModal } from "~/components/modals/TimerOptionsModal";
+import { StatsModal } from "~/components/stats/StatsModal";
 import { Timers } from "~/components/timer/Timers";
+import { api } from "~/utils/api";
+
+interface stat {
+  date: string | Date;
+  id: number;
+  longBreakTime: number;
+  pomodoroTime: number;
+  shortBreakTime: number;
+  userId: string;
+}
 
 export default function Home() {
   const { data: sessionData } = useSession();
-
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenStats, setIsOpenStats] = useState(false);
 
+  const {
+    data: stats,
+    error,
+    isLoading,
+  } = api.stats.getStatsByUser.useQuery({
+    userId: sessionData?.user.id || "",
+  });
+
+  const statsFormatted = stats?.map((stat) => {
+    return {
+      pomodoroTime: stat.pomodoroTime,
+      shortBreakTime: stat.shortBreakTime,
+      longBreakTime: stat.longBreakTime,
+      date: new Date(stat.date).toLocaleDateString(),
+    };
+  });
   return (
     <>
       <Head>
@@ -34,12 +61,20 @@ export default function Home() {
             </p>
           )}
           <Auth />
-          <button
-            className="absolute left-5 top-5 flex flex-col items-center justify-center gap-4"
-            onClick={() => setIsOpen(true)}
-          >
-            <FaSlidersH className="px-2 text-5xl text-black hover:text-opacity-50" />
-          </button>
+          <div className="absolute left-5 top-5 flex flex-row items-center justify-center gap-4">
+            <button onClick={() => setIsOpen(true)}>
+              <FaSlidersH className="px-2 text-5xl text-black hover:text-opacity-50" />
+            </button>
+            <button onClick={() => setIsOpenStats(true)}>
+              <FaChartBar className="px-2 text-5xl text-black hover:text-opacity-50" />
+            </button>
+          </div>
+
+          <StatsModal
+            isOpen={isOpenStats}
+            onClose={() => setIsOpenStats(false)}
+            stats={statsFormatted ?? []}
+          />
 
           <div className="flex flex-col items-center">
             <TimerOptionsModal

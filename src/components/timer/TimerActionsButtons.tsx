@@ -15,7 +15,7 @@ export const TimerActionsButtons: React.FC<props> = ({
   handleStartTimer,
 }: props) => {
   return (
-    <div className="mt-4 flex space-x-4">
+    <div className="z-0 mt-4 flex space-x-4">
       {!isActive && (
         <button
           className="rounded px-4 py-2 text-black hover:text-slate-800"

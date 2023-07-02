@@ -1,3 +1,6 @@
+/* The code is defining a TypeScript module that exports a `statsRouter` object. This object contains
+three methods: `saveStats`, `getStatsByUser`, and `getSecretMessage`. */
+
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { type Prisma } from "@prisma/client";

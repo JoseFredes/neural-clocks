@@ -1,3 +1,12 @@
+/**
+ * The `InputField` component is a reusable input field component in TypeScript React that takes in an
+ * id, label, value, and onChange function as props.
+ * @param {Props} props - The `props` parameter in the `InputField` component is an object that
+ * contains the following properties:
+ * @returns The `InputField` component is returning a JSX element, which is a div containing a label
+ * and an input element. The label displays the `label` prop followed by a colon, and the input element
+ * has the following attributes: id, type, min, value, onChange, and className.
+ */
 interface Props {
   id: string;
   label: string;

@@ -1,3 +1,5 @@
+/* The code is defining a React functional component called `TimerOptionsModal`. This component is a
+modal that allows the user to configure timers for a Pomodoro technique application. */
 import { useSession } from "next-auth/react";
 import React, { useCallback, useState } from "react";
 import { FaTimes } from "react-icons/fa";

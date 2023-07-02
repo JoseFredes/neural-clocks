@@ -1,3 +1,9 @@
+/**
+ * The `StatsChart` component is a React functional component that displays a bar chart of the maximum
+ * time used for each timer (pomodoro, short break, long break) based on the provided `stats` data.
+ * @param {Props}  - - `ChartJS`: The Chart.js library, which is imported as `ChartJS`.
+ * @returns The `StatsChart` component is being returned.
+ */
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { type Stat } from "~/interfaces";

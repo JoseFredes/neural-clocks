@@ -1,3 +1,9 @@
+/**
+ * The ReusableModal component is a reusable modal component in TypeScript React that can be used to
+ * display content in a modal window.
+ * @param  - - `isOpen`: a boolean value indicating whether the modal is open or not.
+ * @returns The ReusableModal component is being returned.
+ */
 import React, { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 

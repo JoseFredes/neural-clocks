@@ -1,3 +1,10 @@
+/**
+ * The `StatsModal` component is a React functional component that displays statistics and charts based
+ * on user data.
+ * @param {StatsModalProps} props - The `props` parameter in the `StatsModal` component is an object
+ * that contains two properties:
+ * @returns The `StatsModal` component is being returned.
+ */
 import React from "react";
 import { StatsChart } from "./StatsChart";
 import { LastFiveConfigs } from "./LastFiveConfigs";

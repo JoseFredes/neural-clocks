@@ -1,3 +1,9 @@
+/**
+ * The `FinishTimerModal` component is a reusable modal component in a TypeScript React application
+ * that displays a modal with a title and description.
+ * @param {Props} props - - `isModalOpen`: a boolean value indicating whether the modal is open or not
+ * @returns The `FinishTimerModal` component is being returned.
+ */
 import React from "react";
 import { FinishTimerModalContent } from "./FinishTimerModalContent";
 import { ReusableModal } from "../modals/ReusableModal";

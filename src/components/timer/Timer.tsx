@@ -1,3 +1,10 @@
+/**
+ * The Timer component is a countdown timer that allows users to start, pause, and reset the timer, and
+ * displays a modal when the timer reaches zero.
+ * @param {Props}  - - `totalMinutes`: The total number of minutes for the timer. It defaults to 25 if
+ * not provided.
+ * @returns The Timer component is being returned.
+ */
 import React, { useEffect, useState } from "react";
 import { TimerActionsButtons } from "./TimerActionsButtons";
 import { FinishTimerModal } from "./FinishTimerModal";

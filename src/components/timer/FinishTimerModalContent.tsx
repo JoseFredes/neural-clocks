@@ -1,3 +1,9 @@
+/**
+ * The `FinishTimerModalContent` component is a React functional component that renders a modal content
+ * with a title, description, and a spinning clock icon.
+ * @param  - - `modalTitle`: The title of the modal. If not provided, it defaults to "Se acabó el
+ * tiempo!".
+ */
 import React from "react";
 import { FaClock } from "react-icons/fa";
 

@@ -28,7 +28,7 @@ export const TimerCircle: React.FC<Props> = ({
   return (
     <svg className="my-4" height={radius * 2} width={radius * 2}>
       <circle
-        stroke="#60a5fa"
+        stroke="#ffffff"
         fill="transparent"
         strokeWidth={stroke}
         strokeDasharray={`${circumference} ${circumference}`}
@@ -41,7 +41,7 @@ export const TimerCircle: React.FC<Props> = ({
         x="50%"
         y="50%"
         textAnchor="middle"
-        stroke="black"
+        stroke="white"
         strokeWidth="2px"
         dy=".3em"
         fontSize="5em"

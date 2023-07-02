@@ -1,21 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  type FunctionComponent,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
-
-interface TimersState {
-  pomodoro: number;
-  shortBreak: number;
-  longBreak: number;
-}
-
-export interface TimerContextType {
-  timers: TimersState;
-  setTimers: Dispatch<SetStateAction<TimersState>>;
-}
+import React, { createContext, useState, type FunctionComponent } from "react";
+import { type TimerContextType, type TimersState } from "~/interfaces";
 
 const TimerContext = createContext<TimerContextType | undefined>(undefined);
 

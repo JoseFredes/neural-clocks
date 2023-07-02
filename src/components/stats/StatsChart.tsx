@@ -1,16 +1,11 @@
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { type Stat } from "~/interfaces";
 
 ChartJS.register(...registerables);
 
 interface Props {
-  stats: stat[];
-}
-
-interface stat {
-  pomodoroTime: number;
-  shortBreakTime: number;
-  longBreakTime: number;
+  stats: Stat[];
 }
 
 export const StatsChart: React.FC<Props> = ({ stats }: Props) => {

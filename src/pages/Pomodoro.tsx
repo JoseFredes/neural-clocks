@@ -24,7 +24,7 @@ export default function Pomodoro() {
         Neural Clocks
       </h1>
       {!sessionData && (
-        <p className="pb-10 text-center">
+        <p className="pb-10 text-center text-white">
           Inicia sesión para guardar tus tiempos y poder acceder a ellos desde
           cualquier dispositivo.
         </p>

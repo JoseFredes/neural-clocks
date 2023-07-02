@@ -1,15 +1,9 @@
 import React, { useMemo } from "react";
 import { LastFiveConfigsTable } from "./LastFiveConfigsTable";
+import { type Stat } from "~/interfaces";
 
 interface Props {
-  stats: stat[];
-}
-
-interface stat {
-  pomodoroTime: number;
-  shortBreakTime: number;
-  longBreakTime: number;
-  date: string;
+  stats: Stat[];
 }
 
 export const LastFiveConfigs: React.FC<Props> = ({ stats }: Props) => {

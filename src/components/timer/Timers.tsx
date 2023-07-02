@@ -4,9 +4,7 @@ import { ShortBreakTimer } from "../shortBreak/ShortBreakTimer";
 import { LongBreakTimer } from "../longBreak/LongBreakTimer";
 import { useTimers } from "~/hooks/useTimers";
 import { TimerMenuButton } from "./TimerMenuButton";
-interface TimerState {
-  [key: string]: number;
-}
+import { type TimerState } from "~/interfaces";
 
 export const Timers: React.FC = () => {
   const { timers: timerResponse } = useTimers();

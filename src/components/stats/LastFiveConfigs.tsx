@@ -1,3 +1,10 @@
+/**
+ * The `LastFiveConfigs` component displays the last five configurations from a list of statistics.
+ * @param {Props}  - - `stats`: an array of objects representing statistics data. Each object should
+ * have the following properties:
+ * @returns The `LastFiveConfigs` component is returning the `LastFiveConfigsTable` component with the
+ * following props:
+ */
 import React, { useMemo } from "react";
 import { LastFiveConfigsTable } from "./LastFiveConfigsTable";
 import { type Stat } from "~/interfaces";

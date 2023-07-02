@@ -1,3 +1,7 @@
+/**
+ * The `Timers` component is a React functional component that manages different timers (pomodoro,
+ * short break, long break) and displays the active timer based on user interaction.
+ */
 import React, { useState, useEffect } from "react";
 import { Timer } from "./Timer";
 import { ShortBreakTimer } from "../shortBreak/ShortBreakTimer";

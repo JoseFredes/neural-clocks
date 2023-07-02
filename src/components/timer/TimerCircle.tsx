@@ -1,3 +1,11 @@
+/**
+ * The TimerCircle component is a circular timer that displays the remaining time in minutes and
+ * seconds.
+ * @param {Props}  - - `totalMinutes`: The total number of minutes for the timer.
+ * @returns The TimerCircle component is returning an SVG element that displays a circular timer. The
+ * timer displays the formatted time in minutes and seconds, and the circle's stroke dashoffset is
+ * adjusted based on the elapsed time.
+ */
 import React, { useMemo } from "react";
 
 interface Props {

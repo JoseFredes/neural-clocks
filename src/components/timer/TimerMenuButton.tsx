@@ -1,3 +1,7 @@
+/**
+ * The `TimerMenuButton` component is a button that can be toggled on and off, and it displays a label.
+ * @param  - - `label` (string): The text to be displayed on the button.
+ */
 import React from "react";
 
 interface TimerButtonProps {

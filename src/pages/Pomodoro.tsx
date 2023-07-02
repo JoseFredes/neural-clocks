@@ -1,3 +1,9 @@
+/* The code is a React component called "Pomodoro" that represents a Pomodoro timer application. It
+imports various dependencies and components, including `useSession` from the `next-auth/react`
+package, `useState` from React, and icons from the `react-icons/fa` package. It also imports custom
+components such as `Auth`, `StatsModal`, `TimerOptionsModal`, `Timers`, and `TimerContext` from
+their respective files. */
+
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { FaChartBar, FaSlidersH } from "react-icons/fa";

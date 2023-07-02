@@ -1,3 +1,9 @@
+/**
+ * The `LastFiveConfigsTable` component is a React functional component that renders a table with data
+ * from an array of `Stat` objects.
+ * @param {Props}  - 1. `title` (string): The title of the table.
+ * @returns The LastFiveConfigsTable component is being returned.
+ */
 import React from "react";
 import { type Stat } from "~/interfaces";
 interface Props {

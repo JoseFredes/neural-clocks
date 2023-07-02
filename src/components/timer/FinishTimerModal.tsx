@@ -1,6 +1,6 @@
 import React from "react";
 import { FinishTimerModalContent } from "./FinishTimerModalContent";
-import { Modal } from "../modals/Modal";
+import { ReusableModal } from "../modals/ReusableModal";
 
 interface Props {
   isModalOpen: boolean;
@@ -12,11 +12,11 @@ interface Props {
 export const FinishTimerModal: React.FC<Props> = (props: Props) => {
   const { isModalOpen, setIsModalOpen, modalTitle, modalDescription } = props;
   return (
-    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+    <ReusableModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
       <FinishTimerModalContent
         modalTitle={modalTitle}
         modalDescription={modalDescription}
       />
-    </Modal>
+    </ReusableModal>
   );
 };

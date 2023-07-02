@@ -1,16 +1,9 @@
 import React from "react";
-
+import { type Stat } from "~/interfaces";
 interface Props {
   title: string;
   columnNames: string[];
-  data: stat[];
-}
-
-interface stat {
-  pomodoroTime: number;
-  shortBreakTime: number;
-  longBreakTime: number;
-  date: string;
+  data: Stat[];
 }
 
 export const LastFiveConfigsTable: React.FC<Props> = ({
@@ -39,7 +32,7 @@ export const LastFiveConfigsTable: React.FC<Props> = ({
               </tr>
             </thead>
             <tbody>
-              {data.map((stat: stat, index) => (
+              {data.map((stat: Stat, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   <td className="px-6 py-4 text-sm text-gray-700">
                     {stat.pomodoroTime} minutos

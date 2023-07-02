@@ -2,23 +2,13 @@ import React from "react";
 import { StatsChart } from "./StatsChart";
 import { LastFiveConfigs } from "./LastFiveConfigs";
 import { ReusableModal } from "../modals/ReusableModal";
+import { type Stat, type StatsQueryResult } from "~/interfaces";
 import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 interface StatsModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-interface Stat {
-  pomodoroTime: number;
-  shortBreakTime: number;
-  longBreakTime: number;
-  date: string;
-}
-
-type QueryResult = {
-  data?: Stat[];
-};
 
 export const StatsModal: React.FC<StatsModalProps> = (
   props: StatsModalProps
@@ -30,7 +20,7 @@ export const StatsModal: React.FC<StatsModalProps> = (
 
   const userId = sessionData?.user?.id;
 
-  let queryResult: QueryResult | null = null;
+  let queryResult: StatsQueryResult | null = null;
 
   queryResult = api.stats.getStatsByUser?.useQuery({
     userId: userId ?? "",

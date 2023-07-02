@@ -9,6 +9,7 @@ export type StatsQueryResult = {
   data?: Stat[];
 };
 
+
 export interface StatsResponse {
   id: string;
   date: Date;
@@ -17,3 +18,4 @@ export interface StatsResponse {
   longBreakTime: number;
   userId: string;
 }
+

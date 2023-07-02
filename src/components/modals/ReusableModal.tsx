@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 
-interface ModalProps {
+interface ReusableModalProps {
   isOpen: boolean;
   onClose: () => void;
   children?: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const ReusableModal: React.FC<ReusableModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+}) => {
   useEffect(() => {
     isOpen
       ? document.body.classList.add("overflow-hidden", "h-screen")

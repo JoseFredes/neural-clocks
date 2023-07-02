@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { LastFiveConfigsTable } from "./LastFiveConfigsTable";
 
 interface Props {
@@ -13,20 +13,22 @@ interface stat {
 }
 
 export const LastFiveConfigs: React.FC<Props> = ({ stats }: Props) => {
-  const getlastfiveConfigs = () => {
+  const lastFiveConfigs = useMemo(() => {
     const orderStatsByDate = stats.sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
-    const lastFiveConfigs = orderStatsByDate.slice(0, 5);
-    return lastFiveConfigs;
-  };
+    return orderStatsByDate.slice(0, 5);
+  }, [stats]);
 
-  const columnNames = ["Pomodoro", "Descanso corto", "Descanto largo", "Fecha"];
+  const columnNames = useMemo(() => {
+    return ["Pomodoro", "Descanso corto", "Descanto largo", "Fecha"];
+  }, []);
+
   return (
     <LastFiveConfigsTable
-      title={"Tus ultimas 5 configuraciones de Timers!"}
+      title={"Tus últimas cinco configuraciones"}
       columnNames={columnNames}
-      data={getlastfiveConfigs()}
+      data={lastFiveConfigs}
     />
   );
 };

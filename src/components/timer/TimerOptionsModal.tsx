@@ -1,8 +1,10 @@
 import { useSession } from "next-auth/react";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import { useTimers } from "~/hooks/useTimers";
 import { api } from "~/utils/api";
+import { InputField } from "../inputs/InputField";
+import { useTimers } from "~/hooks/useTimers";
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -17,105 +19,82 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
   const [pomodoroMinutes, setPomodoroMinutes] = useState(25);
   const [longBreakMinutes, setLongBreakMinutes] = useState(15);
   const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
-  const { mutate, error } = api.stats.saveStats.useMutation();
-  const { timers, setTimers } = useTimers();
+  const { mutate } = api.stats.saveStats.useMutation();
+  const { setTimers } = useTimers();
 
-  const actualizatedTimers = {
-    pomodoro: pomodoroMinutes,
-    shortBreak: shortBreakMinutes,
-    longBreak: longBreakMinutes,
-  };
-
-  const handleIncreaseTimers = () => {
+  const handleIncreaseTimers = useCallback(() => {
     setTimers({
-      ...actualizatedTimers,
+      pomodoro: pomodoroMinutes,
+      shortBreak: shortBreakMinutes,
+      longBreak: longBreakMinutes,
     });
+  }, [setTimers, pomodoroMinutes, shortBreakMinutes, longBreakMinutes]);
+
+  const handleSaveStats = () => {
+    const { user } = sessionData ?? {};
+    const userId = user?.id;
+    try {
+      handleIncreaseTimers();
+      if (userId) {
+        mutate({
+          date: new Date(),
+          pomodoroTime: pomodoroMinutes,
+          shortBreakTime: shortBreakMinutes,
+          longBreakTime: longBreakMinutes,
+          userId: userId,
+        });
+      }
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!isOpen) return null;
 
-  const handleSaveStats = () => {
-    const userId = sessionData?.user.id;
-    if (!userId) return;
-    mutate({
-      date: new Date(),
-      pomodoroTime: pomodoroMinutes,
-      shortBreakTime: shortBreakMinutes,
-      longBreakTime: longBreakMinutes,
-      userId: userId,
-    });
-    handleIncreaseTimers();
-
-    if (!error) onClose();
-    // add alert success message
-  };
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-      <div className="w-96 rounded-lg bg-white">
-        <div className="relative">
+      <div className="mx-auto w-full max-w-md rounded-lg bg-white px-5 py-5 shadow-lg sm:px-10">
+        <div className="flex justify-end">
           <button
-            className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+            className="text-gray-600 transition duration-150 hover:text-gray-700"
             onClick={onClose}
           >
             <FaTimes />
           </button>
         </div>
-        <div className="p-6">
-          <h2 className="mb-4 text-lg font-bold">
-            Personalizar minutos de los timers
-          </h2>
-          <div className="mb-4">
-            <label htmlFor="pomodoroInput" className="mr-2">
-              Pomodoro:
-            </label>
-            <input
-              id="pomodoroInput"
-              type="number"
-              min="1"
-              value={pomodoroMinutes}
-              onChange={(e) => setPomodoroMinutes(Number(e.target.value))}
-              className="rounded-md border border-gray-300 px-2 py-1"
-            />
+        <div className="work-sans mt-4 justify-center sm:flex sm:items-center">
+          <div className="mt-4">
+            <h2 className="mb-6 justify-center text-center text-2xl font-semibold text-indigo-900">
+              Configuración de los timers 🍅
+            </h2>
+            <div className="mx-auto w-64 items-center justify-center space-y-4 text-center">
+              <InputField
+                id="pomodoroInput"
+                label="Pomodoro"
+                value={pomodoroMinutes}
+                onChange={setPomodoroMinutes}
+              />
+              <InputField
+                id="shortBreakInput"
+                label="Short Break"
+                value={shortBreakMinutes}
+                onChange={setShortBreakMinutes}
+              />
+              <InputField
+                id="longBreakInput"
+                label="Long Break"
+                value={longBreakMinutes}
+                onChange={setLongBreakMinutes}
+              />
+            </div>
+            <button
+              className="focus:shadow-outline mx-auto mt-6 block w-full rounded bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700 focus:outline-none sm:w-auto"
+              onClick={handleSaveStats}
+            >
+              Guardar
+            </button>
           </div>
-          <div className="mb-4">
-            <label htmlFor="shortBreakInput" className="mr-2">
-              Short Break:
-            </label>
-            <input
-              id="shortBreakInput"
-              type="number"
-              min="1"
-              value={shortBreakMinutes}
-              onChange={(e) => setShortBreakMinutes(Number(e.target.value))}
-              className="rounded-md border border-gray-300 px-2 py-1"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="longBreakInput" className="mr-2">
-              Long Break:
-            </label>
-            <input
-              id="longBreakInput"
-              type="number"
-              min="1"
-              value={longBreakMinutes}
-              onChange={(e) => setLongBreakMinutes(Number(e.target.value))}
-              className="rounded-md border border-gray-300 px-2 py-1"
-            />
-          </div>
-          <button
-            className="rounded bg-green-700 px-4 py-2 text-white hover:bg-green-800"
-            onClick={handleSaveStats}
-          >
-            Guardar
-          </button>
-          {error && (
-            <p className="text-red-500">
-              Ocurrió un problema al guardar los datos intentalo de nuevo o
-              contacta con el administrador
-            </p>
-          )}
         </div>
       </div>
     </div>

@@ -1,10 +1,7 @@
 import { z } from "zod";
-import {
-  createTRPCRouter,
-  publicProcedure,
-  protectedProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { type Prisma } from "@prisma/client";
+import { type StatsResponse } from "~/interfaces";
 
 const StatsSchema = z.object({
   date: z.date(),
@@ -18,15 +15,6 @@ const UserIdSchema = z.object({
   userId: z.string(),
 });
 
-interface StatsResponse {
-  id: string;
-  date: Date;
-  pomodoroTime: number;
-  shortBreakTime: number;
-  longBreakTime: number;
-  userId: string;
-}
-
 interface Stats extends Prisma.StatsUncheckedCreateInput {
   id: string;
 }
@@ -36,7 +24,6 @@ export const statsRouter = createTRPCRouter({
     .input(StatsSchema)
     .mutation<Stats>(async ({ input, ctx }) => {
       if (!input) throw new Error("Input is required");
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
       const newStat = (await ctx.prisma.stats.create({
         data: {
           date: input.date,
@@ -53,7 +40,6 @@ export const statsRouter = createTRPCRouter({
   getStatsByUser: protectedProcedure
     .input(UserIdSchema)
     .query<Stats[]>(async ({ input, ctx }) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
       return (await ctx.prisma.stats.findMany({
         where: { userId: input.userId },
       })) as Stats[];

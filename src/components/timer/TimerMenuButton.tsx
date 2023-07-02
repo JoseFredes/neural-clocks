@@ -13,8 +13,8 @@ export const TimerMenuButton: React.FC<TimerButtonProps> = ({
 }) => {
   return (
     <button
-      className={`m-2 rounded-full bg-blue-600 px-10 py-3 font-semibold text-white shadow-md hover:bg-blue-700 ${
-        active ? "bg-blue-700" : ""
+      className={`m-2 rounded-full bg-gray-200 px-10 py-3 font-semibold text-black shadow-md hover:bg-gray-600 ${
+        active ? "bg-gray-700" : ""
       }`}
       onClick={onClick}
     >

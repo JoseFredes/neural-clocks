@@ -18,23 +18,23 @@ export const TimerActionsButtons: React.FC<props> = ({
     <div className="z-0 mt-4 flex space-x-4">
       {!isActive && (
         <button
-          className="rounded px-4 py-2 text-black hover:text-slate-800"
+          className="rounded px-4 py-2 text-white hover:text-gray-100"
           onClick={handleStartTimer}
         >
-          <FaPlay className="opacity-50" />
+          <FaPlay className="opacity-90" />
         </button>
       )}
       <button
-        className="rounded px-4 py-2 text-black hover:text-slate-800"
+        className="rounded px-4 py-2 text-white hover:text-gray-100"
         onClick={handlePauseTimer}
       >
-        <FaPause className="opacity-50" />
+        <FaPause className="opacity-90" />
       </button>
       <button
-        className="rounded px-4 py-2 text-black hover:text-slate-800"
+        className="rounded px-4 py-2 text-white hover:text-gray-100"
         onClick={handleResetTimer}
       >
-        <FaRedo className="opacity-50" />
+        <FaRedo className="opacity-90" />
       </button>
     </div>
   );

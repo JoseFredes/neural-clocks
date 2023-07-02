@@ -12,7 +12,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 bg-space">
         <Pomodoro />
       </main>
     </>

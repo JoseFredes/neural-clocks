@@ -7,14 +7,6 @@ import { TimerOptionsModal } from "~/components/timer/TimerOptionsModal";
 
 import { Timers } from "~/components/timer/Timers";
 import { TimerContext } from "~/context/timerContext";
-import { api } from "~/utils/api";
-
-interface stat {
-  pomodoroTime: number;
-  shortBreakTime: number;
-  longBreakTime: number;
-  date: string;
-}
 
 export default function Pomodoro() {
   const { data: sessionData } = useSession();
@@ -25,23 +17,6 @@ export default function Pomodoro() {
     shortBreak: 5,
     longBreak: 15,
   });
-
-  let statsFormatted: stat[] = [];
-
-  if (sessionData) {
-    const { data: stats } = api.stats.getStatsByUser.useQuery({
-      userId: sessionData?.user.id || "",
-    });
-
-    if (stats) {
-      statsFormatted = stats?.map((stat) => ({
-        pomodoroTime: stat.pomodoroTime,
-        shortBreakTime: stat.shortBreakTime,
-        longBreakTime: stat.longBreakTime,
-        date: new Date(stat.date).toLocaleDateString(),
-      }));
-    }
-  }
 
   return (
     <div className="container flex flex-col items-center justify-center px-4 py-16">
@@ -64,11 +39,12 @@ export default function Pomodoro() {
           </button>
         )}
       </div>
-      <StatsModal
-        isOpen={isOpenStats}
-        onClose={() => setIsOpenStats(false)}
-        stats={statsFormatted ?? []}
-      />
+      {sessionData && (
+        <StatsModal
+          isOpen={isOpenStats}
+          onClose={() => setIsOpenStats(false)}
+        />
+      )}
       <TimerContext.Provider value={{ timers, setTimers }}>
         <div className="flex flex-col items-center">
           <TimerOptionsModal isOpen={isOpen} onClose={() => setIsOpen(false)} />

@@ -1,7 +1,7 @@
 import React from "react";
 import { StatsChart } from "./StatsChart";
-import { Modal } from "../modals/Modal";
 import { LastFiveConfigs } from "./LastFiveConfigs";
+import { Modal } from "../modals/Modal";
 
 interface StatsModalProps {
   isOpen: boolean;

@@ -19,6 +19,7 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
   const [pomodoroMinutes, setPomodoroMinutes] = useState(25);
   const [longBreakMinutes, setLongBreakMinutes] = useState(15);
   const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
+  const [showNotification, setShowNotification] = useState(false);
   const { mutate } = api.stats.saveStats.useMutation();
   const { setTimers } = useTimers();
 
@@ -29,6 +30,12 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
       longBreak: longBreakMinutes,
     });
   }, [setTimers, pomodoroMinutes, shortBreakMinutes, longBreakMinutes]);
+
+  const handleCloseModal = () => {
+    setTimeout(() => {
+      onClose();
+    }, 600);
+  };
 
   const handleSaveStats = () => {
     const { user } = sessionData ?? {};
@@ -44,10 +51,12 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
           userId: userId,
         });
       }
-      onClose();
+      setShowNotification(true);
+      handleCloseModal();
     } catch (error) {
       console.log(error);
     }
+    setTimeout(() => setShowNotification(false), 3000);
   };
 
   if (!isOpen) return null;
@@ -94,6 +103,11 @@ export const TimerOptionsModal: React.FC<ModalProps> = ({
             >
               Guardar
             </button>
+            {showNotification && (
+              <div className="fixed bottom-4 left-4 rounded bg-green-800 p-2 text-white">
+                Las configuraciones han cambiado.
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ interface stat {
   date: string;
 }
 
-export const Pomodoro = () => {
+export default function Pomodoro() {
   const { data: sessionData } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenStats, setIsOpenStats] = useState(false);
@@ -78,4 +78,4 @@ export const Pomodoro = () => {
       <Auth />
     </div>
   );
-};
+}

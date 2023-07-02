@@ -13,7 +13,7 @@ interface stat {
   longBreakTime: number;
 }
 
-export const StatsChart = ({ stats }: Props) => {
+export const StatsChart: React.FC<Props> = ({ stats }: Props) => {
   const statsResponses = {
     pomodoroTime: Math.max(...stats.map((stat) => stat.pomodoroTime)),
     shortBreakTime: Math.max(...stats.map((stat) => stat.shortBreakTime)),
@@ -31,14 +31,14 @@ export const StatsChart = ({ stats }: Props) => {
           statsResponses.longBreakTime,
         ],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
+          "rgba(74, 148, 228, 0.2)",
+          "rgba(115, 191, 68, 0.2)",
+          "rgba(247, 163, 92, 0.2)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
+          "rgba(74, 148, 228, 1)",
+          "rgba(115, 191, 68, 1)",
+          "rgba(247, 163, 92, 1)",
         ],
         borderWidth: 1,
       },
@@ -46,15 +46,43 @@ export const StatsChart = ({ stats }: Props) => {
   };
 
   return (
-    <>
-      <h2 className="md:text-md flex items-center justify-center pb-2 text-xl font-semibold tracking-tight text-black sm:text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
-        El mayor tiempo que has usado cada timer
+    <div>
+      <h2 className="mb-2 text-center text-2xl font-semibold text-gray-800">
+        El mayor tiempo utilizado en cada temporizador
       </h2>
-      <p className="md:text-md text-md flex items-center justify-center pb-2 tracking-tight text-black sm:text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
-        Este es el máximo de tiempo que has usado cada timer desde que empezaste
-        a usar la aplicación.
+      <p className="text-md mb-4 text-center text-gray-800">
+        Este es el máximo tiempo que has utilizado en cada temporizador desde
+        que comenzaste a usar la aplicación.
       </p>
-      <Bar data={data} />
-    </>
+      <Bar
+        data={data}
+        options={{
+          scales: {
+            y: {
+              beginAtZero: true,
+              max:
+                Math.max(
+                  statsResponses.pomodoroTime,
+                  statsResponses.shortBreakTime,
+                  statsResponses.longBreakTime
+                ) + 5,
+              ticks: {
+                stepSize: 5,
+              },
+            },
+          },
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                font: {
+                  size: 14,
+                },
+              },
+            },
+          },
+        }}
+      />
+    </div>
   );
 };

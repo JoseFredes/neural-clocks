@@ -2,21 +2,23 @@ import React from "react";
 
 import { Timer } from "../timer/Timer";
 
-interface props {
+interface Props {
   totalMinutes?: number;
 }
 
-export const ShortBreakTimer: React.FC<props> = ({
+export const ShortBreakTimer: React.FC<Props> = ({
   totalMinutes = 5,
-}: props) => {
-  const modalTitle = "Se acabó el descanso corto!";
-  const Modaldescription =
-    "Es hora de volver a trabajar otro pomodoro más, ánimo!";
+}: Props) => {
+  const modalContent = {
+    modalTitle: "Se acabó el descanso corto!",
+    Modaldescription: "Es hora de volver a trabajar otro pomodoro más, ánimo!",
+  };
+
   return (
     <Timer
       totalMinutes={totalMinutes}
-      Modaldescription={modalTitle}
-      modalTitle={Modaldescription}
+      modalDescription={modalContent.modalTitle}
+      modalTitle={modalContent.Modaldescription}
     />
   );
 };

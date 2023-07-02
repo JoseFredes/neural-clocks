@@ -1,22 +1,23 @@
 import React from "react";
-
 import { Timer } from "../timer/Timer";
 
-interface props {
+interface Props {
   totalMinutes?: number;
 }
 
-export const LongBreakTimer: React.FC<props> = ({
+export const LongBreakTimer: React.FC<Props> = ({
   totalMinutes = 15,
-}: props) => {
-  const modalTitle = "Se acabó el Descanso largo!";
-  const Modaldescription =
-    "Lo hiciste muy bien, ahora es hora de volver a trabajar o descansar por hoy!";
+}: Props) => {
+  const modalContent = {
+    modalTitle: "Se acabó el descanso largo!",
+    Modaldescription:
+      "Lo hiciste muy bien, ahora es hora de volver a trabajar o descansar por hoy!",
+  };
   return (
     <Timer
       totalMinutes={totalMinutes}
-      modalTitle={modalTitle}
-      Modaldescription={Modaldescription}
+      modalTitle={modalContent.modalTitle}
+      modalDescription={modalContent.Modaldescription}
     />
   );
 };

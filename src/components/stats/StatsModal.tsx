@@ -1,6 +1,6 @@
 import React from "react";
 import { StatsChart } from "./StatsChart";
-import { Modal } from "../modals/modal";
+import { Modal } from "../modals/Modal";
 import { LastFiveConfigs } from "./LastFiveConfigs";
 
 interface StatsModalProps {

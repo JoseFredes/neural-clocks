@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Pomodoro } from "./pomodoro";
+import { Pomodoro } from "./Pomodoro";
 
 export default function Home() {
   return (

@@ -12,7 +12,7 @@ En mi búsqueda por garantizar la excelencia en la calidad del código y la efic
 Elegir una arquitectura serverless fue una decisión estratégica. Ya que al ser un proyecto sencillo lo mejor es hacerlo en esta arquitectura para enfocar el tiempo en desarrollar mejor la solución, aparte en un cluster auto scaler este sería muy eficiente y escaladle
 
 💪 Postgres para Robustez:
-La elección de Postgres como sistema de gestión de base de datos se debe a su solidez y confiabilidad. Con características como transacciones ACID, vistas, almacenamiento de procedimientos, y triggers, Postgres asegura una gestión de datos compleja manteniendo la integridad de estos. Además, su excelente desempeño, escalabilidad y seguridad lo convierten en la elección ideal para aplicaciones de alto rendimiento.
+La elección de Postgres como sistema de gestión de base de datos se debe a su solidez y confiabilidad. Su excelente desempeño, escalabilidad y seguridad lo convierten en la elección ideal para aplicaciones de alto rendimiento.
 
 🎨 Inspiración para el Diseño:
 Basé el diseño y la disposición de botones en tres sitios web de pomodoro que son:

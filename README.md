@@ -46,6 +46,16 @@ He puesto especial cuidado en seguir a las mejores prácticas de programación y
 Estoy sinceramente satisfecho con el rumbo que ha tomado el proyecto. Aunque siempre hay espacio para crecer y mejorar, estoy comprometido con el desarrollo continuo de esta herramienta.
 El uso de stacks y arquitecturas ágiles es esencial para desarrollar soluciones rápidas y eficientes que satisfagan las necesidades del usuario. 
 
+Este proyecto ha sido más que una simple tarea; ha sido un viaje de aprendizaje y crecimiento. Cada línea de código escrita y cada desafío superado me ha permitido mejorar mis habilidades técnicas y mis habilidades de resolución de problemas de forma creativa e innovadora.
+
+La programación no era el único problema; también se requería la elección adecuada de tecnologías y su integración. Me propuse construir una solución robusta y eficiente utilizando el Stack T3, la arquitectura serverless y Postgres. Esta estrategia me llevó a salir de mi zona de confort, explorar nuevas tecnologías y aprender cómo funcionan juntas. Mi perspectiva y mi repertorio de habilidades se han ampliado como resultado de eso.
+
+Además, resolví problemas de manera innovadora, creando una herramienta útil para la gestión del tiempo y obteniendo un MVP rápidamente y funcional.
+
+El proyecto ha sido significativo porque no se limitó a crear una aplicación, sino que fue un viaje de autoconocimiento y mejora personal. He aprendido más sobre mi resistencia, mi capacidad para aprender y adaptarme y mi pasión por encontrar soluciones que hacen la vida más fácil y productiva a través de él.
+
+En resumen, estoy ansioso por lo que sigue. Estoy equipado con nuevas habilidades y conocimientos gracias an este proyecto, y estoy ansioso por aplicarlos en proyectos posteriores. No solo disfruto de lo que he logrado, sino también de lo que sé que puedo lograr en el futuro.
+
 Creo que es una buena tarea y bastante completa para realizar y resolver problemas!
 
 Comandos de Prisma:

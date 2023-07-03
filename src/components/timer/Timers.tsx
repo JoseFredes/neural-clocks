@@ -1,7 +1,3 @@
-/**
- * The `Timers` component is a React functional component that manages different timers (pomodoro,
- * short break, long break) and displays the active timer based on user interaction.
- */
 import React, { useState, useEffect } from "react";
 import { Timer } from "./Timer";
 import { ShortBreakTimer } from "../shortBreak/ShortBreakTimer";
@@ -53,12 +49,12 @@ export const Timers: React.FC = () => {
             onClick={() => handleTimerClick("pomodoro")}
           />
           <TimerMenuButton
-            label="Short Break"
+            label="Descanso Corto"
             active={activeTimer === "shortBreak"}
             onClick={() => handleTimerClick("shortBreak")}
           />
           <TimerMenuButton
-            label="Long Break"
+            label="Descanso Largo"
             active={activeTimer === "longBreak"}
             onClick={() => handleTimerClick("longBreak")}
           />
